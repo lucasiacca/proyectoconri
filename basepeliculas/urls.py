@@ -1,0 +1,33 @@
+"""
+URL configuration for peliculas project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/4.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path
+from peliculas.views import index, listar_peliculas, listar_kdms, listar_sesiones, buscar_pelicula, buscar_kdm, buscar_sesion, agregar_pelicula, agregar_kdm,agregar_sesion
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path("", index, name="inicio"),
+    path("peliculas/", listar_peliculas, name="lista_peliculas"),
+    path("kdms/", listar_kdms, name="lista_kdms"),
+    path("sesiones/", listar_sesiones, name="lista_sesiones"),
+    path("buscar-pelicula/", buscar_pelicula, name="buscar_pelicula"), 
+    path("buscar-kdms/", buscar_kdm, name = "buscar_kdm"),
+    path("buscar-sesion/", buscar_sesion, name = "buscar_sesion"),
+    path("agregar-pelicula/", agregar_pelicula, name="agregar_pelicula"),
+    path("agregar-kdm/", agregar_kdm, name="agregar_kdm"),
+    path("agregar-sesion/", agregar_sesion, name="agregar_sesion"),
+]

@@ -1,0 +1,38 @@
+{%extends "basepeliculas/base.html"%}
+
+{%block contenido %}
+
+<section>
+    <div>
+      <h1>Lista de Sesiones</h1>
+      <a class="btn btn-dark btn-md" href="{% url 'agregar_sesion' %}" >Agregar sesion</a>
+    <br>
+  
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Titulo</th>
+            <th>Version</th>
+            <td>Sala</td>
+            <td>Dia</td>
+          </tr>
+          {% for sesion in sesiones %}
+          <tr>
+            <td>{{ sesion.id }}</td>
+            <td>{{ sesion.fecha_ingreso }}</td>
+            <td>{{ sesion.titulo_sesion }}</td>
+            <td>{{ sesion.version_sesion }}</td>
+            <td>{{ sesion.sala}}</td>
+            <td>{{ sesion.datetime_sesion}}</td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  
+    </div>
+  </section>
+  {% endblock contenido %}
+  

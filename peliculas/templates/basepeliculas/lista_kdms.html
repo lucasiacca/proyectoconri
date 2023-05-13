@@ -1,0 +1,40 @@
+{%extends "basepeliculas/base.html"%}
+
+{%block contenido %}
+
+<section>
+    <div>
+      <h1>Lista de KDMs</h1>
+      <a class="btn btn-dark btn-md" href="{% url 'agregar_kdm' %}" >Agregar KDM</a>
+    <br>
+  
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Titulo</th>
+            <th>CPL</th>
+            <td>Servidor</td>
+            <td>Fecha Apertura</td>
+            <td>Fecha Clausura</td>
+          </tr>
+          {% for kdm in kdms %}
+          <tr>
+            <td>{{ kdm.id }}</td>
+            <td>{{ kdm.fecha_ingreso }}</td>
+            <td>{{ kdm.titulo_kdm }}</td>
+            <td>{{ kdm.cpl_kdm }}</td>
+            <td>{{ kdm.servidor_kdm }}</td>
+            <td>{{ kdm.fecha_apertura }}</td>
+            <td>{{ kdm.fecha_clausura }}</td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  
+    </div>
+  </section>
+  {% endblock contenido %}
+  
