@@ -82,7 +82,7 @@ def buscar_sesion(request):
         busqueda = data.get("busqueda")  # Use get() to handle if the key is not present
         sala = Sesion.objects.filter(sala__contains=busqueda)
         contexto = {
-            "sala": sala,  # Pass the queried movies to the context
+            "sala": sala,  # Pass the queried mgit push -u origin mainovies to the context
         }
         return render(request, 'basepeliculas/lista_sesiones.html', context=contexto)
     else:  # Handle GET request
