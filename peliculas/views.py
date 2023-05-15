@@ -68,7 +68,7 @@ def buscar_kdm(request):
     if request.method == "POST":
         data = request.POST
         busqueda = data.get("busqueda")  
-        kdm = Kdm.objects.filter(kdm__contains=busqueda)
+        kdm = Kdm.objects.filter(titulo_kdm__contains=busqueda)
         contexto = {
             "kdm": kdm,  
         }
