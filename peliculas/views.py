@@ -55,10 +55,10 @@ def listar_sesiones(request):
 def buscar_pelicula(request):
     if request.method == "POST":
         data = request.POST
-        busqueda = data.get("busqueda")  # Use get() to handle if the key is not present
+        busqueda = data.get("busqueda")  
         peliculas = Peliculas.objects.filter(titulo__contains=busqueda)
         contexto = {
-            "peliculas": peliculas,  # Pass the queried movies to the context
+            "peliculas": peliculas,  
         }
         return render(request, 'basepeliculas/lista_peliculas.html', context=contexto)
     else:  # Handle GET request
@@ -67,25 +67,25 @@ def buscar_pelicula(request):
 def buscar_kdm(request):
     if request.method == "POST":
         data = request.POST
-        busqueda = data.get("busqueda")  # Use get() to handle if the key is not present
-        kdm = Kdm.objects.filter(titulo__contains=busqueda)
+        busqueda = data.get("busqueda")  
+        kdm = Kdm.objects.filter(kdm__contains=busqueda)
         contexto = {
-            "kdm": kdm,  # Pass the queried movies to the context
+            "kdm": kdm,  
         }
         return render(request, 'basepeliculas/lista_kdms.html', context=contexto)
-    else:  # Handle GET request
+    else:  
         return render(request, 'basepeliculas/lista_kdms.html')
     
 def buscar_sesion(request):
     if request.method == "POST":
         data = request.POST
-        busqueda = data.get("busqueda")  # Use get() to handle if the key is not present
+        busqueda = data.get("busqueda") 
         sala = Sesion.objects.filter(sala__contains=busqueda)
         contexto = {
-            "sala": sala,  # Pass the queried mgit push -u origin mainovies to the context
+            "sala": sala, 
         }
         return render(request, 'basepeliculas/lista_sesiones.html', context=contexto)
-    else:  # Handle GET request
+    else:  
         return render(request, 'basepeliculas/lista_sesiones.html')
         
     
@@ -94,17 +94,17 @@ def agregar_pelicula(request):
         formulario = PeliculaFormulario(request.POST)
 
         if formulario.is_valid():
-            data = formulario.cleaned_data  # es un diccionario
+            data = formulario.cleaned_data  
             titulo = data["titulo"]
             version = data["version"]
             cpl = data["cpl"]
-            pelicula = Peliculas(titulo=titulo, version=version, cpl=cpl)  # lo crean solo en RAM
-            pelicula.save()  # Lo guardan en la Base de datos
+            pelicula = Peliculas(titulo=titulo, version=version, cpl=cpl)  
+            pelicula.save()  
 
-            # Redirecciono al usuario a la lista de cursos
-            url_exitosa = reverse('lista_peliculas')  # estudios/cursos/
+          
+            url_exitosa = reverse('lista_peliculas')  
             return redirect(url_exitosa)
-    else:  # GET
+    else:  
         formulario = PeliculaFormulario()
     http_response = render(
         request=request,
@@ -118,17 +118,17 @@ def agregar_kdm(request):
         formulario = KdmFormulario(request.POST)
 
         if formulario.is_valid():
-            data = formulario.cleaned_data  # es un diccionario
+            data = formulario.cleaned_data  
             titulo_kdm = data["titulo_kdm"]
             cpl_kdm = data["cpl_kdm"]
             servidor_kdm = data["servidor_kdm"]
             fecha_apertura = data["fecha_apertura"]
             fecha_clausura = data["fecha_clausura"]
             kdm = Kdm(titulo_kdm=titulo_kdm, cpl_kdm=cpl_kdm, servidor_kdm=servidor_kdm, fecha_apertura=fecha_apertura, fecha_clausura=fecha_clausura)  # lo crean solo en RAM
-            kdm.save()  # Lo guardan en la Base de datos
+            kdm.save()  
 
-            # Redirecciono al usuario a la lista de cursos
-            url_exitosa = reverse('lista_kdms')  # estudios/cursos/
+           
+            url_exitosa = reverse('lista_kdms') 
             return redirect(url_exitosa)
     else:  # GET
         formulario = KdmFormulario()
@@ -144,16 +144,16 @@ def agregar_sesion(request):
         formulario = SesionFormulario(request.POST)
 
         if formulario.is_valid():
-            data = formulario.cleaned_data  # es un diccionario
+            data = formulario.cleaned_data 
             titulo_sesion = data["titulo_sesion"]
             version_sesion = data["version_sesion"]
             datetime_sesion = data["datetime_sesion"]
             sala = data["sala"]
             sesion = Sesion(titulo_sesion=titulo_sesion, version_sesion=version_sesion, datetime_sesion=datetime_sesion, sala=sala)  # lo crean solo en RAM
-            sesion.save()  # Lo guardan en la Base de datos
+            sesion.save()  
 
-            # Redirecciono al usuario a la lista de cursos
-            url_exitosa = reverse('lista_sesiones')  # estudios/cursos/
+            
+            url_exitosa = reverse('lista_sesiones') 
             return redirect(url_exitosa)
     else:  # GET
      formulario = SesionFormulario()
